@@ -1,18 +1,16 @@
-package com.javatechie.redis;
+package com.netcore.redis.controller;
 
-import com.javatechie.redis.entity.Product;
-import com.javatechie.redis.respository.ProductDao;
+import com.netcore.redis.entity.Product;
+import com.netcore.redis.respository.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@SpringBootApplication
 @RestController
 @RequestMapping("/product")
-public class SpringDataRedisExampleApplication {
+public class ProductController {
+
     @Autowired
     private ProductDao dao;
 
@@ -30,14 +28,9 @@ public class SpringDataRedisExampleApplication {
     public Product findProduct(@PathVariable int id) {
         return dao.findProductById(id);
     }
+
     @DeleteMapping("/{id}")
-    public String remove(@PathVariable int id)   {
-    	return dao.deleteProduct(id);
-	}
-
-
-    public static void main(String[] args) {
-        SpringApplication.run(SpringDataRedisExampleApplication.class, args);
+    public String remove(@PathVariable int id) {
+        return dao.deleteProduct(id);
     }
-
 }
